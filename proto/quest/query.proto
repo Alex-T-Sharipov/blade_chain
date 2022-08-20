@@ -5,6 +5,7 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "quest/params.proto";
+import "quest/puzzle.proto";
 // this line is used by starport scaffolding # 1
 
 option go_package = "quest/x/quest/types";
@@ -15,7 +16,12 @@ service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/quest/quest/params";
   }
-  // this line is used by starport scaffolding # 2
+  // Queries a list of Puzzles items.
+	rpc Puzzles(QueryPuzzlesRequest) returns (QueryPuzzlesResponse) {
+		option (google.api.http).get = "/quest/quest/puzzles";
+	}
+
+// this line is used by starport scaffolding # 2
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.
@@ -25,6 +31,18 @@ message QueryParamsRequest {}
 message QueryParamsResponse {
   // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryPuzzlesRequest {
+}
+
+message QueryPuzzlesResponse {
+  // string name = 1;
+  // string image = 2;
+  // string owner = 3;
+  // string combined = 4;
+  // string location = 5;
+  repeated Puzzle Puzzle = 1;
 }
 
 // this line is used by starport scaffolding # 3

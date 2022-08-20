@@ -13,12 +13,27 @@ export interface ProtobufAny {
   "@type"?: string;
 }
 
-export type QuestMsgCreatePuzzleResponse = object;
+export interface QuestMsgCreatePuzzleResponse {
+  /** @format uint64 */
+  id?: string;
+}
 
 /**
  * Params defines the parameters for the module.
  */
 export type QuestParams = object;
+
+export interface QuestPuzzle {
+  creator?: string;
+
+  /** @format uint64 */
+  id?: string;
+  name?: string;
+  image?: string;
+  owner?: string;
+  combined?: string;
+  location?: string;
+}
 
 /**
  * QueryParamsResponse is response type for the Query/Params RPC method.
@@ -26,6 +41,10 @@ export type QuestParams = object;
 export interface QuestQueryParamsResponse {
   /** params holds all the parameters of this module. */
   params?: QuestParams;
+}
+
+export interface QuestQueryPuzzlesResponse {
+  Puzzle?: QuestPuzzle[];
 }
 
 export interface RpcStatus {
@@ -242,6 +261,22 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryParams = (params: RequestParams = {}) =>
     this.request<QuestQueryParamsResponse, RpcStatus>({
       path: `/quest/quest/params`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryPuzzles
+   * @summary Queries a list of Puzzles items.
+   * @request GET:/quest/quest/puzzles
+   */
+  queryPuzzles = (params: RequestParams = {}) =>
+    this.request<QuestQueryPuzzlesResponse, RpcStatus>({
+      path: `/quest/quest/puzzles`,
       method: "GET",
       format: "json",
       ...params,

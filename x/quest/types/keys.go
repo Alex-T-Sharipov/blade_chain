@@ -1,7 +1,6 @@
 package types
 
-const ( 
-
+const (
 	PuzzleKey      = "Puzzle-value-"
 	PuzzleCountKey = "Puzzle-count-"
 
