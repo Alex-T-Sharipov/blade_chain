@@ -1,0 +1,12 @@
+syntax = "proto3";
+package quest.quest;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "quest/x/quest/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  
+}
