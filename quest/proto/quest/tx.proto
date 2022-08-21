@@ -1,0 +1,28 @@
+syntax = "proto3";
+package quest.quest;
+
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "quest/x/quest/types";
+
+// Msg defines the Msg service.
+service Msg {
+      rpc CreatePuzzle(MsgCreatePuzzle) returns (MsgCreatePuzzleResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgCreatePuzzle {
+  string creator = 1;
+  string name = 2;
+  string image = 3;
+  string owner = 4;
+  string combined = 5;
+  string location = 6;
+}
+
+message MsgCreatePuzzleResponse {
+  uint64 id = 1;
+}
+
+
+// this line is used by starport scaffolding # proto/tx/message

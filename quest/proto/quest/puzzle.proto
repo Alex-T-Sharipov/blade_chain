@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package quest.quest;
+
+option go_package = "quest/x/quest/types";
+
+message Puzzle {
+  string creator = 1;
+  uint64 id = 2;
+  string name = 3;
+  string image = 4;
+  string owner = 5;
+  string combined = 6;
+  string location = 7;
+}
